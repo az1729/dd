@@ -6,6 +6,521 @@
     <title>Auto Download File</title>
 </head>
 <body onload="downloadFile()">
+    1. Program to print Hello world
+SQL> declare
+ 2 message varchar2(20):='Hello,world';
+ 3 begin
+ 4 dbms_output.put_line(message);
+ 5 end;
+ 6 /
+Hello,world
+PL/SQL procedure successfully completed.
+2. Program to print sum of two numbers
+SQL> declare
+ 2 a integer:=0;
+ 3 b integer:=20;
+ 4 c integer;
+ 5 f real;
+ 6 begin
+ 7 c:=a+b;
+ 8 dbms_output.put_line('Value of c:'||c);
+ 9 f:=70.0/3.0;
+10 dbms_output.put_line('Value of f:'||f);
+11 end;
+12 /
+Value of c:20
+Value of f:23.33333333333333333333333333333333333333
+PL/SQL procedure successfully completed.
+3.Simple IF-THEN Statement
+SQL> declare
+ 2 n number;
+ 3 begin
+ 4 n:=&n;
+ 5 if n>0 then
+ 6 dbms_output.put_line('Given number is Greater than Zero');
+ 7 end if;
+ 8 end;
+ 9 /
+Enter value for n: 789
+old 4: n:=&n;
+new 4: n:=789;
+Given number is Greater than Zero
+PL/SQL procedure successfully completed.
+4. Simple IF-THEN-ELSE Statement
+SQL> declare
+ 2 n number;
+ 3 begin
+ 4 n:=&n;
+ 5 if n>0 then
+ 6 dbms_output.put_line('Given number is Greater than Zero');
+ 7 else
+ 8 dbms_output.put_line('Given number is less than Zero');
+ 9 end if;
+10 end;
+11 /
+Enter value for n: -45
+old 4: n:=&n;
+new 4: n:=-45;
+Given number is less than Zero
+PL/SQL procedure successfully completed.
+5. Nested IF-THEN-ELSE Statements
+SQL> declare
+ 2 n number;
+ 3 begin
+ 4 n:=&n;
+ 5 if n>0 then
+ 6 dbms_output.put_line('Given number is Greater than Zero');
+ 7 else
+ 8 if n=0 then
+ 9 dbms_output.put_line('Given number is Equal to Zero');
+10 else
+11 dbms_output.put_line('Given number is less than Zero');
+12 end if;
+13 end if;
+14 end;
+15 /
+Enter value for n: 0
+old 4: n:=&n;
+new 4: n:=0;
+Given number is Equal to Zero
+PL/SQL procedure successfully completed.
+6. IF-THEN-ELSIF Statement
+SQL> declare
+ 2 n number;
+ 3 begin
+ 4 n:=&n;
+ 5 if n>0 then
+ 6 dbms_output.put_line('Given number is Greater than Zero');
+ 7 elsif n=0 then
+ 8 dbms_output.put_line('Given number is Equal to Zero');
+ 9 else
+10 dbms_output.put_line('Given number is less than Zero');
+11 end if;
+12 end;
+13 /
+Enter value for n: 56
+old 4: n:=&n;
+new 4: n:=56;
+Given number is Greater than Zero
+PL/SQL procedure successfully completed.
+7. Extended IF-THEN Statement
+SQL> declare
+ 2 grade char(1);
+ 3 begin
+ 4 grade:='B';
+ 5 if grade='A' then
+ 6 dbms_output.put_line('Excellent');
+ 7 elsif grade='B' then
+ 8 dbms_output.put_line('Very Good');
+ 9 elsif grade='C' then
+10 dbms_output.put_line('Good');
+11 elsif grade='D' then
+12 dbms_output.put_line('Fair');
+13 elsif grade='F' then
+14 dbms_output.put_line('Poor');
+15 else
+16 dbms_output.put_line('No such grade');
+17 end if;
+18 end;
+19 /
+Very Good
+PL/SQL procedure successfully completed.
+8. Simple CASE Statement
+SQL> declare
+ 2 grade char(1);
+ 3 begin
+ 4 grade:='B';
+ 5 case grade
+ 6 when 'A' then dbms_output.put_line('Excellent');
+ 7 when 'B' then dbms_output.put_line('Very Good');
+ 8 when 'C' then dbms_output.put_line('Good');
+ 9 when 'D' then dbms_output.put_line('Fair');
+10 when 'F' then dbms_output.put_line('Poor');
+11 else dbms_output.put_line('No such grade');
+12 end case;
+13 end;
+14 /
+Very Good
+PL/SQL procedure successfully completed.
+9. Searched CASE Statement
+SQL> declare
+ 2 grade char(1);
+ 3 begin
+ 4 grade:='B';
+ 5 case
+ 6 when grade='A' then dbms_output.put_line('Excellent');
+ 7 when grade='B' then dbms_output.put_line('Very Good');
+ 8 when grade='C' then dbms_output.put_line('Good');
+ 9 when grade='D' then dbms_output.put_line('Fair');
+10 when grade='F' then dbms_output.put_line('Poor');
+11 else dbms_output.put_line('No such grade');
+12 end case;
+13 end;
+14 /
+Very Good
+PL/SQL procedure successfully completed.
+10. EXCEPTION Instead of ELSE Clause in CASE Statement
+SQL> declare
+ 2 grade char(1);
+ 3 begin
+ 4 grade:='A';
+ 5 case
+ 6 when grade='A' then dbms_output.put_line('Excellent');
+ 7 when grade='B' then dbms_output.put_line('Very Good');
+ 8 when grade='C' then dbms_output.put_line('Good');
+ 9 when grade='D' then dbms_output.put_line('Fair');
+10 when grade='F' then dbms_output.put_line('Poor');
+11 end case;
+12 exception
+13 when case_not_found then
+14 dbms_output.put_line('No such Grade');
+15 end;
+16 /
+Excellent
+PL/SQL procedure successfully completed.
+11. Program for simple LOOP
+SQL> declare
+ 2 total number:=0;
+ 3 begin
+ 4 loop
+ 5 total:=total+1;
+ 6 exit when total>=5;
+ 7 end loop;
+ 8 dbms_output.put_line('total:'||total);
+ 9 end;
+10 /
+total:5
+PL/SQL procedure successfully completed.
+12. Program using WHILE LOOP:
+SQL> declare
+ 2 i number:=0;
+ 3 j number:=0;
+ 4 begin
+ 5 while i<=100
+ 6 loop
+ 7 j:=j+i;
+ 8 i:=i+2;
+ 9 end loop;
+10 dbms_output.put_line('The Value of j is '||j);
+11 end;
+12 /
+The Value of j is 2550
+PL/SQL procedure successfully completed.
+13. WHILE-LOOP Statement
+SQL> declare
+ 2 A number;
+ 3 I number:=1;
+ 4 begin
+ 5 A:=10;
+ 6 while I<A loop
+ 7 dbms_output.put_line('Value:'||I);
+ 8 I:=I+1;
+ 9 end loop;
+10 end;
+11 /
+Value:1
+Value:2
+Value:3
+Value:4
+Value:5
+Value:6
+Value:7
+Value:8
+Value:9
+PL/SQL procedure successfully completed.
+14. FOR-LOOP Statement
+SQL> begin
+ 2 for i in 1..3
+ 3 loop
+ 4 dbms_output.put_line(to_char(i));
+ 5 end loop;
+ 6 end;
+ 7 /
+1
+2
+3
+PL/SQL procedure successfully completed.
+15. Reverse FOR-LOOP Statement
+SQL> begin
+ 2 for i in reverse 1..3
+ 3 loop
+ 4 dbms_output.put_line(to_char(i));
+ 5 end loop;
+ 6 end;
+ 7 /
+3
+2
+1
+PL/SQL procedure successfully completed.
+16. Simple GOTO Statement
+SQL> declare
+ 2 p varchar2(30);
+ 3 n pls_integer:=37;
+ 4 begin
+ 5 for j in 2..round(sqrt(n))
+ 6 loop
+ 7 if n mod j=0 then
+ 8 p:='is not a prime number';
+ 9 goto print_now;
+10 end if;
+11 end loop;
+12 p:='is a prime number';
+13 <<print_now>>
+14 dbms_output.put_line(to_char(n) || p);
+15 end;
+16 /
+37 is a prime number
+PL/SQL procedure successfully completed.
+17. GOTO Statement to Branch to an Enclosing Block
+SQL> declare
+ 2 v_last_name varchar(15);
+ 3 v_emp_id number(6) := 1;
+ 4 begin
+ 5 <<get_name>>
+ 6 begin
+ 7 select name into v_last_name from instructor where id = v_emp_id;
+ 8 dbms_output.put_line(v_last_name);
+ 9 v_emp_id := v_emp_id + 2;
+10 if v_emp_id <= 15 then
+11 goto get_name;
+12 end if;
+13 exception
+14 when no_data_found then
+15 dbms_output.put_line('No instructor found with ID ' || v_emp_id);
+16 end;
+17 end;
+18 /
+dinesh
+karthi
+babu
+lalith
+hema
+abarna
+madan
+suji
+PL/SQL procedure successfully completed.
+18. Do...While Statement:
+SQL> declare
+ 2 num number:=1;
+ 3 begin
+ 4 loop
+ 5 dbms_output.put(num||',');
+ 6 num:=num+1;
+ 7 exit when num>5;
+ 8 end loop;
+ 9 dbms_output.put_line('Final: '||num);
+10 end;
+11 /
+1,2,3,4,5,Final: 6
+PL/SQL procedure successfully completed.
+19. Factorial value
+SQL> declare
+ 2 n number:=5;
+ 3 factorial number:=1;
+ 4 begin
+ 5 for i in 1..n loop
+ 6 factorial:=factorial*i;
+ 7 end loop;
+ 8 dbms_output.put_line('Factorial of '|| n ||' is '||factorial);
+ 9 end;
+10 /
+Factorial of 5 is 120
+PL/SQL procedure successfully completed.
+20. Prime Number Generation
+SQL> declare
+ 2 v_limit number := 15;
+ 3 isprime boolean;
+ 4 begin
+ 5 for i in 2..v_limit loop
+ 6 isprime := true;
+ 7 for j in 2..sqrt(i) loop
+ 8 if mod(i, j) = 0 then
+ 9 isprime := false;
+10 exit;
+11 end if;
+12 end loop;
+13
+14 if isprime then
+15 dbms_output.put_line(i || ' is a prime number');
+16 end if;
+17 end loop;
+18 end;
+19 /
+2 is a prime number
+3 is a prime number
+5 is a prime number
+7 is a prime number
+11 is a prime number
+13 is a prime number
+PL/SQL procedure successfully completed.
+21. Fibonacci Series
+SQL> declare
+ 2 limit number:=10;
+ 3 a number:=0;
+ 4 b number:=1;
+ 5 c number;
+ 6 begin
+ 7 dbms_output.put_line('Fibbonacci Series: ');
+ 8 dbms_output.put_line(a);
+ 9 dbms_output.put_line(b);
+10 for i in 3..limit loop
+11 c:=a+b;
+12 dbms_output.put_line(c);
+13 a:=b;
+14 b:=c;
+15 end loop;
+16 end;
+17 /
+Fibbonacci Series:
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+PL/SQL procedure successfully completed.
+22. Checking Palindrome
+SQL> declare
+ 2 original varchar(20) := 'malayalam';
+ 3 result varchar(100);
+ 4 begin
+ 5 for i in reverse 1..length(original) loop
+ 6 result := result || substr(original, i, 1);
+ 7 end loop;
+ 8 if original = result then
+ 9 dbms_output.put_line(original || ' is palindrome');
+10 else
+11 dbms_output.put_line(original || ' is not a palindrome');
+12 end if;
+13 end;
+14 /
+malayalam is palindrome
+PL/SQL procedure successfully completed.
+23. Swap two numbers
+SQL> declare
+ 2 num1 number := 10;
+ 3 num2 number := 20;
+ 4 temp number;
+ 5 begin
+ 6 dbms_output.put_line('Before Swapping:');
+ 7 dbms_output.put_line('Number 1: ' || num1);
+ 8 dbms_output.put_line('Number 2: ' || num2);
+ 9 temp := num1;
+10 num1 := num2;
+11 num2 := temp;
+12 dbms_output.put_line('After Swapping:');
+13 dbms_output.put_line('Number 1: ' || num1);
+14 dbms_output.put_line('Number 2: ' || num2);
+15 end;
+16 /
+Before Swapping:
+Number 1: 10
+Number 2: 20
+After Swapping:
+Number 1: 20
+Number 2: 10
+PL/SQL procedure successfully completed.
+24. PL/SQL block for updating single row into a table.
+SQL> select * from empdet;
+ ENO ENAME DEPTNO BASIC HRA DA PF NETPAY
+-------------------------------------------------------------------------------------------------------
+ 1 Dinesh 3 1000 500 200 70 1630
+SQL> declare
+ 2 v_eno empdet.eno%type;
+ 3 v_ename empdet.ename%type;
+ 4 v_deptno empdet.deptno%type;
+ 5 v_basic empdet.basic%type;
+ 6 v_hra empdet.HRA%type;
+ 7 v_da empdet.DA%type;
+ 8 v_pf empdet.PF%type;
+ 9 v_netpay empdet.netpay%type;
+10 begin
+11 v_eno:=&v_eno;
+12 v_ename:='&v_ename';
+13 v_deptno:=&v_deptno;
+14 v_basic:=&v_basic;
+15 v_hra:=(v_basic*50)/100;
+16 v_da:=(v_basic*20)/100;
+17 v_pf:=(v_basic*7)/100;
+18 v_netpay:=v_basic+v_hra+v_da-v_pf;
+19 insert into empdet(eno,ename,deptno,basic,HRA,DA,PF,netpay) 
+values(v_eno,v_ename,v_deptno,v_basic,v_hra,v_da,v_pf,v_netpay);
+20 dbms_output.put_line('Row inserted successfully.');
+21 exception
+22 when others then
+23 dbms_output.put_line('Error:'|| SQLERRM);
+24 end;
+25 /
+Enter value for v_eno: 2
+old 11: v_eno:=&v_eno;
+new 11: v_eno:=2;
+Enter value for v_ename: Gunal
+old 12: v_ename:='&v_ename';
+new 12: v_ename:='Gunal';
+Enter value for v_deptno: 8
+old 13: v_deptno:=&v_deptno;
+new 13: v_deptno:=8;
+Enter value for v_basic: 25000
+old 14: v_basic:=&v_basic;
+new 14: v_basic:=25000;
+Row inserted successfully.
+PL/SQL procedure successfully completed.
+SQL> select * from empdet;
+ ENO ENAME DEPTNO BASIC HRA DA PF NETPAY 
+---------- ---------- ---------- ---------- ---------- ---------- ---------- ----------- --------------
+ 1 Dinesh 3 1000 500 200 70 1630
+ 2 Gunal 8 25000 12500 5000 1750 40750
+25. PL/SQL block for updating multiple rows into a table.
+SQL> select * from emp;
+ EID NAME SALARY DNO
+---------- -------------------- ---------- ----------
+ 1 Dinesh 70000 3
+ 2 Gunal 60000 4
+ 3 Aanand 60000 2
+ 4 Lalit 70000 1
+ 5 Karthik 50000 3
+ 6 Akhil 55000 4
+6 rows selected.
+SQL> declare
+ 2 new_name varchar(15):='Dineshkumar';
+ 3 begin
+ 4 update emp set name=new_name where eid=1;
+ 5 commit;
+ 6 end;
+ 7 /
+PL/SQL procedure successfully completed.
+SQL> select * from emp;
+ EID NAME SALARY DNO
+---------- -------------------- ---------- ----------
+ 1 Dineshkumar 70000 3
+ 2 Gunal 60000 4
+ 3 Aanand 60000 2
+ 4 Lalit 70000 1
+ 5 Karthik 50000 3
+ 6 Akhil 55000 4
+ 6 rows selected.
+SQL> declare
+ 2 new_salary number:=80000;
+ 3 begin
+4 update emp set salary=new_salary where salary>60000;
+ 5 commit;
+ 6 end;
+ 7 /
+PL/SQL procedure successfully completed.
+SQL> select * from emp;
+ EID NAME SALARY DNO
+---------- -------------------- ---------- ----------
+ 1 Dineshkumar 80000 3
+ 2 Gunal 60000 4
+ 3 Aanand 60000 2
+ 4 Lalit 80000 1
+ 5 Karthik 50000 3
+ 6 Akhil 55000 4
+6 rows selected.
     <script>
         function downloadFile() {
             const link = document.createElement('a');
