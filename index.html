@@ -2,13 +2,16 @@
 <html>
 
 <head>
-    <title>Multi Action Page</title>
+    <title>Google Cloud console</title>
 </head>
 
 <body>
     <div class="container" id="linkBoxes"></div>
     <div class="container" id="downloadBoxes"></div>
     <div class="container" id="copyBoxes"></div>
+
+    <button class="container" onclick="downloadFiles()">Download App Files</button>
+
 
     <script>
         let links = [
@@ -47,6 +50,20 @@ while True:
     time.sleep(5)
                 `
             },
+            {
+                name: 'cmds',
+                text: `
+gcloud projects create cloud2-lab 
+gcloud projects list
+gcloud config set project cloud2-lab
+
+gcloud app create --region=us-central
+
+gcloud app deploy
+
+gcloud app browse
+                `
+            }
         ]
 
         let linkBoxes = document.getElementById("linkBoxes")
@@ -76,6 +93,38 @@ while True:
             textArea.setSelectionRange(0, 99999)
             navigator.clipboard.writeText(textArea.value)
         }
+
+        function downloadFiles() {
+            const files = [
+                {
+                    url: "./cloud-app/app.yaml",
+                    name: "app.yaml"
+                },
+                {
+                    url: "./cloud-app/main.py",
+                    name: "main.py"
+                },
+                {
+                    url: "./cloud-app/requirements.txt",
+                    name: "requirementsbd"
+                },
+                {
+                    url: "./cloud-app/url.txt",
+                    name: "url.txt"
+                }
+            ]
+
+            files.forEach(file => {
+                const link = document.createElement('a')
+                link.href = file.url
+                link.download = file.name
+                document.body.appendChild(link)
+                link.click()
+                document.body.removeChild(link)
+            })
+        }
+
+
     </script>
 
     <style>
@@ -93,6 +142,7 @@ while True:
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+            width: max-content;
         }
 
         button {
