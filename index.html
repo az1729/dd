@@ -1,23 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> </title>
+    <title>Multi Action Page</title>
 </head>
-<body onload="downloadFile()">
-    Made by Giridharan S
+
+<body>
+    <div class="container" id="linkBoxes"></div>
+    <div class="container" id="downloadBoxes"></div>
+    <div class="container" id="copyBoxes"></div>
+
     <script>
-        function downloadFile() {
-            /*
-            const link = document.createElement('a');
-            link.href = './'; // Replace with the actual file URL, ./file.ext
-            link.download = ''; // Replace with the desired file name, file.ext
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            */
+        let links = [
+            { name: "SDK", url: "https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe" },
+            { name: "VMWare", url: "https://download.informer.com/win-1194261685-67f5fe5a-677d409f-cb7adf6d87af65753-cf35da9974a3b46b9-3861494464-1658914350/vmware-workstation-full-17.0.0-20800274.exe" },
+            { name: "SDK Page", url: "https://cloud.google.com/sdk/docs/install" },
+            { name: "ThinkSpeak", url: "https://thingspeak.mathworks.com/" },
+        ]
+
+        let copies = [
+            {
+                name: "ThinkSpeak",
+                text: `
+import requests
+import time
+import random
+THINGSPEAK_API_KEY = ''
+THINGSPEAK_URL = 'https://api.thingspeak.com/update'
+
+def send_data_to_thingspeak(temperature, humidity):
+    payload = {
+        'api_key': THINGSPEAK_API_KEY,
+        'field1': temperature,
+        'field2': humidity
+    }
+    response = requests.get(THINGSPEAK_URL, params=payload)
+    if response.status_code == 200:
+        print(f"Data sent successfully: Temp={temperature}, Humidity={humidity}")
+    else:
+        print(f"Failed to send data. Status code: {response.status_code}")
+
+while True:
+    temp = round(random.uniform(25, 35), 2)
+    hum = round(random.uniform(50, 70), 2)
+    send_data_to_thingspeak(temp, hum)
+    time.sleep(5)
+                `
+            },
+        ]
+
+        let linkBoxes = document.getElementById("linkBoxes")
+        let copyBoxes = document.getElementById("copyBoxes")
+
+        links.forEach((l) => {
+            let b = document.createElement("div")
+            b.innerHTML = `<button onclick="window.open('${l.url}','_blank')">${l.name}</button>`
+            linkBoxes.appendChild(b)
+        })
+
+        copies.forEach((c, i) => {
+            let hidden = document.createElement("textarea")
+            hidden.id = "copy" + i
+            hidden.style.display = "none"
+            hidden.value = c.text
+            document.body.appendChild(hidden)
+
+            let b = document.createElement("div")
+            b.innerHTML = `<button onclick="copyContent(${i})">Copy ${c.name}</button>`
+            copyBoxes.appendChild(b)
+        })
+
+        function copyContent(i) {
+            let textArea = document.getElementById("copy" + i)
+            textArea.select()
+            textArea.setSelectionRange(0, 99999)
+            navigator.clipboard.writeText(textArea.value)
         }
     </script>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-family: sans-serif;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #000;
+        }
+    </style>
 </body>
+
 </html>
