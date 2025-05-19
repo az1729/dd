@@ -6,20 +6,26 @@
 </head>
 
 <body>
-    <div class="container" id="linkBoxes"></div>
-    <div class="container" id="downloadBoxes"></div>
-    <div class="container" id="copyBoxes"></div>
+    <div class="all">
 
-    <button class="container" onclick="downloadFiles()">manual</button>
+        <div class="container" id="linkBoxes"></div>
+        <div class="container" id="downloadBoxes"></div>
+        <div class="container" id="copyBoxes"></div>
 
+        <button class="container" onclick="downloadFiles()">manual</button>
+
+    </div>
 
     <script>
         let links = [
-            { name: "EXP 1", url: "https://www.tinkercad.com/things/8mcFhyEBMHp-exp1?sharecode=FxYgu09bYaWFmbW_up50NjCfoaJAoRyYvNiHjoMjyWU" },
-            { name: "EXP 2", url: "https://www.tinkercad.com/things/0Mgwfzkiizf-exp2?sharecode=tnZ8EnTHigG9G9maoFkdci6cBvAF3E3n1uEobNj5HT4" },
-            { name: "EXP 3", url: "https://www.tinkercad.com/things/6ZG8XrFF27L-exp3?sharecode=Bx___GPM8efs9mnWlDPswjilgs5s8WrZrbAAxlpkkYA" },
-            { name: "EXP 5", url: "https://www.tinkercad.com/things/8fIFIrNSMK1-exp5?sharecode=6SR9BbyGPfFND3k_UoGx79xH4FArTyKE7ZytKyQb64g" },
-            { name: "EXP 6", url: "https://www.tinkercad.com/things/02paI8lhDl3-exp6?sharecode=Rs2NO4NLiVoLHoUZin43QmTDCZ596rZg9RRbivLRIqw" },
+            { name: "smart light", url: "https://www.tinkercad.com/things/8mcFhyEBMHp-exp1?sharecode=FxYgu09bYaWFmbW_up50NjCfoaJAoRyYvNiHjoMjyWU" },
+            { name: "temp sensor", url: "https://www.tinkercad.com/things/jyhyhLZBneK-exp5" },
+            { name: "measure distance", url: "https://www.tinkercad.com/things/8ZRBj1Yc3N8-exp2" },
+
+            { name: "temp2", url: "https://www.tinkercad.com/things/8fIFIrNSMK1-exp5?sharecode=6SR9BbyGPfFND3k_UoGx79xH4FArTyKE7ZytKyQb64g" },
+            { name: "", url: "https://www.tinkercad.com/things/02paI8lhDl3-exp6?sharecode=Rs2NO4NLiVoLHoUZin43QmTDCZ596rZg9RRbivLRIqw" },
+
+            { name: "", url: "https://www.tinkercad.com/things/0Mgwfzkiizf-exp2?sharecode=tnZ8EnTHigG9G9maoFkdci6cBvAF3E3n1uEobNj5HT4" },
         ]
 
         let copies = [
@@ -65,7 +71,7 @@
                     url: "./iot-manual.pdf",
                     name: "manual.pdf"
                 },
-                
+
             ]
 
             files.forEach(file => {
@@ -83,13 +89,25 @@
 
     <style>
         body {
+            background: url('bg.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        .all {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 5px;
             font-family: sans-serif;
-            background-color: #000;
             color: #fff;
-            padding: 20px;
+            position: absolute;
+            bottom: 10px;
+        }
+
+        .all {
+            width: 100vw;
         }
 
         .container {
@@ -97,6 +115,14 @@
             gap: 20px;
             flex-wrap: wrap;
             width: max-content;
+        }
+
+        .all {
+            opacity: 0;
+        }
+
+        .all:hover {
+            opacity: 1;
         }
 
         button {
