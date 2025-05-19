@@ -10,8 +10,9 @@
     <div class="container" id="downloadBoxes"></div>
     <div class="container" id="copyBoxes"></div>
 
-    <button class="container" onclick="downloadFiles()">Download GApp Files</button>
-    <button class="container" onclick="downloadaFiles()">Download Java Files</button>
+    <button class="container" onclick="downloadFiles()">GApp Files</button>
+    <button class="container" onclick="downloadaFiles()">Java Files</button>
+    <button class="container" onclick="downloadlFiles()">manual Files</button>
 
 
     <script>
@@ -198,6 +199,23 @@ gcloud app browse
                 {
                     url: "./java/path.txt",
                     name: "path.txt"
+                }
+            ]
+
+            files.forEach(file => {
+                const link = document.createElement('a')
+                link.href = file.url
+                link.download = file.name
+                document.body.appendChild(link)
+                link.click()
+                document.body.removeChild(link)
+            })
+        }
+        function downloadlFiles() {
+            const files = [
+                {
+                    url: "./manual.pdf",
+                    name: "manual.pdf"
                 }
             ]
 
