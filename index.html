@@ -9,9 +9,9 @@
 <body>
     <div class="all">
 
-        <div class="container" id="linkBoxes"></div>
-        <div class="container" id="downloadBoxes"></div>
-        <div class="container" id="copyBoxes"></div>
+        <div class="container" id="linkBoxes"></div> 
+        <div class="container" id="downloadBoxes"></div> |
+        <div class="container" id="copyBoxes"></div> |
 
         <button class="container" onclick="downloadFiles()">manual</button>
 
@@ -22,15 +22,15 @@
             { name: "smart light", url: "https://www.tinkercad.com/things/8mcFhyEBMHp-exp1?sharecode=FxYgu09bYaWFmbW_up50NjCfoaJAoRyYvNiHjoMjyWU" },
             { name: "temp sensor", url: "https://www.tinkercad.com/things/jyhyhLZBneK-exp5" },
             { name: "measure distance", url: "https://www.tinkercad.com/things/8ZRBj1Yc3N8-exp2" },
-
             { name: "alarm", url: "https://www.tinkercad.com/things/jLmMPnwypTF-alarm" },
 
-            { name: "", url: "https://www.tinkercad.com/things/0Mgwfzkiizf-exp2?sharecode=tnZ8EnTHigG9G9maoFkdci6cBvAF3E3n1uEobNj5HT4" },
+            { name: "ins ardino", url: "https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.6_Windows_64bit.exe" },
+            { name: "CH340", url: "https://sparks.gogo.co.nz/assets/_site_/downloads/CH34x_Install_Windows_v3_4.zip" },
         ]
 
         let copies = [
             {
-                name: "Node MCU",
+                name: "MCU code",
                 text: `
 #include <ESP8266WiFi.h>
 const char* ssid = "Kongu_Wifi";
@@ -48,7 +48,7 @@ while (WiFi.status() != WL_CONNECTED) {
 delay(500);
 retries++;
 Serial.print(".");
-if (retries > 20) {  // Timeout after 10 seconds (20 * 500ms)
+if (retries > 20) {  
 Serial.println("Failed to connect to WiFi.");
 break;
 }
@@ -82,6 +82,11 @@ delay(1);
 }
                 `
             },
+            {
+                name:'nodemcu json',
+                text:`https://arduino.esp8266.com/stable/package_esp8266com_index.json
+https://dl.espressif.com/dl/package_esp32_index.json`
+            }
         ]
 
         let linkBoxes = document.getElementById("linkBoxes")
@@ -155,6 +160,7 @@ delay(1);
 
         .all {
             width: 100vw;
+            color: #000;
         }
 
         .container {
