@@ -10,7 +10,8 @@
     <div class="container" id="downloadBoxes"></div>
     <div class="container" id="copyBoxes"></div>
 
-    <button class="container" onclick="downloadFiles()">Download App Files</button>
+    <button class="container" onclick="downloadFiles()">Download GApp Files</button>
+    <button class="container" onclick="downloadaFiles()">Download Java Files</button>
 
 
     <script>
@@ -163,11 +164,40 @@ gcloud app browse
                 },
                 {
                     url: "./cloud-app/requirements.txt",
-                    name: "requirementsbd"
+                    name: "requirements.txt"
+                }
+            ]
+
+            files.forEach(file => {
+                const link = document.createElement('a')
+                link.href = file.url
+                link.download = file.name
+                document.body.appendChild(link)
+                link.click()
+                document.body.removeChild(link)
+            })
+        }
+        function downloadaFiles() {
+            const files = [
+                {
+                    url: "./java/app.yaml",
+                    name: "app.yaml"
                 },
                 {
-                    url: "./cloud-app/url.txt",
-                    name: "url.txt"
+                    url: "./java/war/index.jsp",
+                    name: "index.jsp"
+                },
+                {
+                    url: "./java/war/WEB-INF/appengine-web.xml",
+                    name: "appengine-web.xml"
+                },
+                {
+                    url: "./java/war/WEB-INF/web.xml",
+                    name: "web.xml"
+                },
+                {
+                    url: "./java/path.txt",
+                    name: "path.txt"
                 }
             ]
 
