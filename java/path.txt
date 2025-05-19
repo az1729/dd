@@ -1,0 +1,7 @@
+java
+├── app.yaml
+└── war
+    ├── index.jsp
+    └── WEB-INF
+        ├── appengine-web.xml
+        └── web.xml
