@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Google Cloud console</title>
+    <title>TinkerCad</title>
 </head>
 
 <body>
@@ -10,119 +10,25 @@
     <div class="container" id="downloadBoxes"></div>
     <div class="container" id="copyBoxes"></div>
 
-    <button class="container" onclick="downloadFiles()">GApp Files</button>
-    <button class="container" onclick="downloadaFiles()">Java Files</button>
-    <button class="container" onclick="downloadlFiles()">manual Files</button>
+    <button class="container" onclick="downloadFiles()"></button>
 
 
     <script>
         let links = [
-            { name: "SDK", url: "https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe" },
-            { name: "VMWare", url: "https://download.informer.com/win-1194261685-67f5fe5a-677d409f-cb7adf6d87af65753-cf35da9974a3b46b9-3861494464-1658914350/vmware-workstation-full-17.0.0-20800274.exe" },
-            { name: "SDK Page", url: "https://cloud.google.com/sdk/docs/install" },
-            { name: "ThinkSpeak", url: "https://thingspeak.mathworks.com/" },
-            { name: "Tinkercad", url: "https://www.tinkercad.com/things/g7VkNFlGEUf-powerful-bruticus/editel" },
+            { name: "EXP 1", url: "https://www.tinkercad.com/things/8mcFhyEBMHp-exp1?sharecode=FxYgu09bYaWFmbW_up50NjCfoaJAoRyYvNiHjoMjyWU" },
+            { name: "EXP 2", url: "https://www.tinkercad.com/things/0Mgwfzkiizf-exp2?sharecode=tnZ8EnTHigG9G9maoFkdci6cBvAF3E3n1uEobNj5HT4" },
+            { name: "EXP 3", url: "https://www.tinkercad.com/things/6ZG8XrFF27L-exp3?sharecode=Bx___GPM8efs9mnWlDPswjilgs5s8WrZrbAAxlpkkYA" },
+            { name: "EXP 5", url: "https://www.tinkercad.com/things/8fIFIrNSMK1-exp5?sharecode=6SR9BbyGPfFND3k_UoGx79xH4FArTyKE7ZytKyQb64g" },
+            { name: "EXP 6", url: "https://www.tinkercad.com/things/02paI8lhDl3-exp6?sharecode=Rs2NO4NLiVoLHoUZin43QmTDCZ596rZg9RRbivLRIqw" },
         ]
 
         let copies = [
             {
-                name: "ThinkSpeak",
+                name: "",
                 text: `
-import requests
-import time
-import random
-THINGSPEAK_API_KEY = ''
-THINGSPEAK_URL = 'https://api.thingspeak.com/update'
-
-def send_data_to_thingspeak(temperature, humidity):
-    payload = {
-        'api_key': THINGSPEAK_API_KEY,
-        'field1': temperature,
-        'field2': humidity
-    }
-    response = requests.get(THINGSPEAK_URL, params=payload)
-    if response.status_code == 200:
-        print(f"Data sent successfully: Temp={temperature}, Humidity={humidity}")
-    else:
-        print(f"Failed to send data. Status code: {response.status_code}")
-
-while True:
-    temp = round(random.uniform(25, 35), 2)
-    hum = round(random.uniform(50, 70), 2)
-    send_data_to_thingspeak(temp, hum)
-    time.sleep(5)
-                `
-            },
-            {
-                name: "g get greet",
-                text: `
-from flask import Flask, request
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return '''
-        <form action="/greet" method="post">
-            Enter your name: <input type="text" name="name">
-            <input type="submit" value="Greet">
-        </form>
-    '''
-
-@app.route('/greet', methods=['POST'])
-def greet():
-    name = request.form['name']
-    return f'<h1>Hello, {name}!</h1>'
-                `
-            },
-            {
-                name: "Thinkspeak http",
-                text: `
-import requests
-
-API_KEY = 'YOUR_WRITE_API_KEY'
-temperature = 25.6
-humidity = 60
-
-url = f"https://api.thingspeak.com/update?api_key={API_KEY}&field1={temperature}&field2={humidity}"
-response = requests.get(url)
-
-if response.status_code == 200:
-    print("Data sent successfully. Entry ID:", response.text)
-else:
-    print("Failed to send data. HTTP Status code:", response.status_code)
-                `
-            },
-            {
-                name: "g HTML PY",
-                text: `
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return render_template('welcome.html')
-
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
 
                 `
             },
-            {
-                name: 'cmds',
-                text: `
-gcloud projects create cloud2-lab 
-gcloud projects list
-gcloud config set project cloud2-lab
-
-gcloud app create --region=us-central
-
-gcloud app deploy
-
-gcloud app browse
-                `
-            }
         ]
 
         let linkBoxes = document.getElementById("linkBoxes")
@@ -156,67 +62,10 @@ gcloud app browse
         function downloadFiles() {
             const files = [
                 {
-                    url: "./cloud-app/app.yaml",
-                    name: "app.yaml"
+                    url: "",
+                    name: ""
                 },
-                {
-                    url: "./cloud-app/main.py",
-                    name: "main.py"
-                },
-                {
-                    url: "./cloud-app/requirements.txt",
-                    name: "requirements.txt"
-                }
-            ]
-
-            files.forEach(file => {
-                const link = document.createElement('a')
-                link.href = file.url
-                link.download = file.name
-                document.body.appendChild(link)
-                link.click()
-                document.body.removeChild(link)
-            })
-        }
-        function downloadaFiles() {
-            const files = [
-                {
-                    url: "./java/app.yaml",
-                    name: "app.yaml"
-                },
-                {
-                    url: "./java/war/index.jsp",
-                    name: "index.jsp"
-                },
-                {
-                    url: "./java/war/WEB-INF/appengine-web.xml",
-                    name: "appengine-web.xml"
-                },
-                {
-                    url: "./java/war/WEB-INF/web.xml",
-                    name: "web.xml"
-                },
-                {
-                    url: "./java/path.txt",
-                    name: "path.txt"
-                }
-            ]
-
-            files.forEach(file => {
-                const link = document.createElement('a')
-                link.href = file.url
-                link.download = file.name
-                document.body.appendChild(link)
-                link.click()
-                document.body.removeChild(link)
-            })
-        }
-        function downloadlFiles() {
-            const files = [
-                {
-                    url: "./manual.pdf",
-                    name: "manual.pdf"
-                }
+                
             ]
 
             files.forEach(file => {
